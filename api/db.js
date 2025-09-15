@@ -1,15 +1,18 @@
+// api/db.js
 import mongoose from "mongoose";
 
-const connectDB = async() => {
-    try {
-        if (!process.env.MONGO_URI) {
-            throw new Error("MONGO_URI is missing in environment variables");
-        }
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log("MongoDB connected");
-    } catch (err) {
-        console.error("Database connection failed:", err.message);
-    }
-};
+let isConnected = false;
 
-export default connectDB;
+export async function connectDB() {
+    if (isConnected) return;
+
+    try {
+        await mongoose.connect(process.env.MONGODB_URI, {
+            dbName: "butterdb",
+        });
+        isConnected = true;
+        console.log("✅ MongoDB connected");
+    } catch (err) {
+        console.error("❌ MongoDB connection error:", err);
+    }
+}
