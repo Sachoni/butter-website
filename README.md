@@ -1,16 +1,17 @@
 # Butter Website
 
-Frontend: React  
-Backend: Node.js (Serverless functions on Vercel)  
+Frontend: Vite + React  
+Backend: Vercel serverless functions (Node)  
+DB: MongoDB Atlas (set MONGODB_URI env var)
 
-## Local Development
-```bash
-cd frontend
-npm install
-npm start
-```
+Local:
+  cd frontend
+  npm install
+  npm run dev
 
-Backend functions run only on Vercel under `/api/*`.
+Build:
+  cd frontend
+  npm run build
 
-## Deployment
-Push to GitHub → Vercel auto-builds.
+Deploy:
+  push to GitHub → Vercel auto-deploy (make sure MONGODB_URI is set in Vercel Environment Variables)

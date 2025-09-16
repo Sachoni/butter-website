@@ -1,18 +1,23 @@
 // api/db.js
-import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 
-let isConnected = false;
-
-export async function connectDB() {
-    if (isConnected) return;
-
-    try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            dbName: "butterdb",
-        });
-        isConnected = true;
-        console.log("✅ MongoDB connected");
-    } catch (err) {
-        console.error("❌ MongoDB connection error:", err);
-    }
+if (!process.env.MONGODB_URI) {
+    // helpful error if env var missing in deployment
+    throw new Error("Please set the MONGODB_URI environment variable.");
 }
+
+const uri = process.env.MONGODB_URI;
+const options = {};
+
+let client;
+let clientPromise;
+
+if (globalThis._mongoClientPromise) {
+    clientPromise = globalThis._mongoClientPromise;
+} else {
+    client = new MongoClient(uri, options);
+    clientPromise = client.connect();
+    globalThis._mongoClientPromise = clientPromise;
+}
+
+export default clientPromise;

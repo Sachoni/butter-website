@@ -1,6 +1,7 @@
 node_modules/
-build/
-dist/
+frontend/node_modules/
 .env
-.vercel
+dist/
+frontend/dist/
+.vscode/
 .DS_Store
