@@ -5,24 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Butter Login</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/Logo.png" type="image/png">
 </head>
 <body>
-  <div class="login-container">
-    <h2>Butter Account</h2>
-    <p>Don’t have an account? <a href="register.html">Sign up</a></p>
-    
-    <div class="input-group">
-      <label>Email</label>
-      <input type="email" id="email" placeholder="Email">
-    </div>
+  <h2>Login</h2>
 
-    <div class="input-group">
-      <label>Password</label>
-      <input type="password" id="password" placeholder="Password">
-    </div>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <button onclick="googleLogin()">Login with Google</button>
+  <script type="module" src="account/auth.js"></script>
 
-    <button>Sign In</button>
-  </div>
+
+  <p>No account? <a href="register.html">Register</a></p>
+
+  <script src="account/auth.js"></script>
 </body>
 </html>
